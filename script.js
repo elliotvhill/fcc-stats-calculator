@@ -37,8 +37,6 @@ const getMedian = (array) => {
     return median;
 };
 
-const getRange = (array) => Math.max(...array) - Math.min(...array);
-
 const getMode = (array) => {
     const counts = {};
     if (new Set(Object.values(counts)).size === 1) {
@@ -54,4 +52,10 @@ const getMode = (array) => {
         (el) => counts[el] === counts[highest]
     );
     return mode.join(", ");
+};
+
+const getRange = (array) => Math.max(...array) - Math.min(...array);
+
+const getVariance = (array) => {
+    const mean = getMean(array);
 };
