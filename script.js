@@ -19,26 +19,15 @@ const calculate = () => {
 };
 
 const getMean = (array) =>
-    array.reduce((acc, el) => acc + el, 0) / array.length;
+    +(array.reduce((acc, el) => acc + el, 0) / array.length).toFixed(2);
 
 const getMedian = (array) => {
     const sorted = array.slice().sort((a, b) => a - b);
-    //
-    // first pass using if statement:
-    // if (sorted.length % 2 === 0) {
-    //     return getMean([
-    //         sorted[sorted.length / 2] - 1,
-    //         sorted[sorted.length / 2],
-    //     ]);
-    // } else {
-    //     return sorted[Math.floor(sorted.length / 2)];
-    // }
-    //
     const median =
         array.length % 2 === 0
             ? getMean([sorted[array.length / 2 - 1], sorted[array.length / 2]])
             : sorted[Math.floor(array.length / 2)];
-    return median;
+    return +median.toFixed(2);
 };
 
 const getMode = (array) => {
@@ -62,19 +51,16 @@ const getRange = (array) => Math.max(...array) - Math.min(...array);
 
 const getVariance = (array) => {
     const mean = getMean(array);
-    // const differences = array.map((el) => el - mean);
-    // const squaredDifferences = differences.map((el) => el ** 2);
-    // const sumSquaredDifferences = squaredDifferences.reduce((acc, el) => acc + el, 0);
     const variance = array.reduce((acc, el) => {
         const difference = el - mean;
         const squared = difference ** 2;
         return acc + squared;
     }, 0) / array.length;
-    return variance;
+    return +variance.toFixed(2);
 };
 
 const getStandardDeviation = (array) => {
     const variance = getVariance(array);
     const standardDeviation = Math.sqrt(variance);
-    return standardDeviation;
+    return +standardDeviation.toFixed(2);
 };
