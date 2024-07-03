@@ -8,12 +8,14 @@ const calculate = () => {
     const mode = getMode(numbers);
     const range = getRange(numbers);
     const variance = getVariance(numbers);
+    const standardDeviation = getStandardDeviation(numbers);
 
     document.querySelector("#mean").textContent = mean;
     document.querySelector("#median").textContent = median;
     document.querySelector("#mode").textContent = mode;
     document.querySelector("#range").textContent = range;
-    document.squared("#variance").textContent = variance;
+    document.querySelector("#variance").textContent = variance;
+    document.querySelector("#standardDeviation").textContent = standardDeviation;
 };
 
 const getMean = (array) =>
@@ -69,4 +71,10 @@ const getVariance = (array) => {
         return acc + squared;
     }, 0) / array.length;
     return variance;
+};
+
+const getStandardDeviation = (array) => {
+    const variance = getVariance(array);
+    const standardDeviation = Math.sqrt(variance);
+    return standardDeviation;
 };
